@@ -1,0 +1,78 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "name": "Mr. X",
+      "password": "user1pass",
+      "role": {
+        "id": 21,
+        "rolename": "System Administrator"
+      }
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "name": "Mr. Robots",
+      "password": "user2pass",
+      "role": {
+        "id": 22,
+        "rolename": "User Only"
+      }
+    },
+    {
+      "id": 3,
+      "username": "user3",
+      "name": "Mr. Jack",
+      "password": "user3pass",
+      "role": {
+        "id": 21,
+        "rolename": "System Administrator"
+      }
+    }
+  ],
+  "roles": [
+    {
+      "id": 21,
+      "rolename": "System Administrator",
+      "menus": [
+        {
+          "path": "/dashboard/user",
+          "title": "User",
+          "icon": "fa fa-address-book",
+          "class": "",
+          "badge": "",
+          "badgeClass": "",
+          "isExternalLink": false,
+          "submenu": []
+        },
+        {
+          "path": "/dashboard/role",
+          "title": "Role",
+          "icon": "zmdi zmdi-help-outline",
+          "class": "",
+          "badge": "",
+          "badgeClass": "",
+          "isExternalLink": false,
+          "submenu": []
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "rolename": "User Only",
+      "menus": [
+        {
+          "path": "/dashboard/user",
+          "title": "User",
+          "icon": "fa fa-address-book",
+          "class": "",
+          "badge": "",
+          "badgeClass": "",
+          "isExternalLink": false,
+          "submenu": []
+        }
+      ]
+    }
+  ]
+}
