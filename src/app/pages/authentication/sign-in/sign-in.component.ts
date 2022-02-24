@@ -1,7 +1,9 @@
 import { HttpParams } from '@angular/common/http';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Response } from 'src/app/interfaces/model/Response';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -21,6 +23,7 @@ export class SignInComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private userService: UsersService,
+    private authService: AuthenticationService,
     private fb: FormBuilder) { }
 
 
@@ -31,10 +34,14 @@ export class SignInComponent implements OnInit {
         username: this.signInForm.get('username')?.value
       }
     });
-    this.userService.getUsers(params).subscribe((res: any) => {
-      if (res) {
-        localStorage.setItem('userId', res[0].id)
-        localStorage.setItem('roleId', res[0].role.id)
+
+    this.authService.login({
+      username_or_email: this.signInForm.get('username')?.value,
+      password: this.signInForm.get('password')?.value
+    }).subscribe((res: Response<any>) => {
+      if (res.kode && res.data) {
+        let token:string = res.token!;
+        localStorage.setItem('token', token);
         this.router.navigate(['dashboard/user']);
       }
     });
@@ -52,6 +59,7 @@ export class SignInComponent implements OnInit {
 
 
   ngOnInit() {
+    localStorage.clear();
   }
 
 }

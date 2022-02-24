@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-sm-12 mb-4">
+    <div class="card">
+      <div class="card-header text-uppercase d-flex align-items-center">
+        <div class="col-sm-9">
+          Data User
+        </div>
+        <div class="col-sm-3 d-flex align-items-end flex-column">
+          <button type="button" class="btn btn-primary" (click)="create()"> Tambah Data </button>
+        </div>
+      </div>
+      <div class="card-body">
+        <input type='text' class="form-control" placeholder='Type to filter the name column...'
+          (keyup)='updateFilter($event)' />
+        <ngx-datatable #table class='bootstrap' [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+          [rowHeight]="'auto'" [limit]="10" [rows]='rows'>
+          <ngx-datatable-column name="No" [width]="50">
+            <ng-template let-rowIndex="rowIndex" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ rowIndex + 1}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Username" prop="username" [width]="50">
+            <ng-template let-value="value" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email" prop="email" [width]="50">
+            <ng-template let-value="value" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Role" prop="role" [width]="50">
+            <ng-template let-value="value" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="Email Verified At" prop="email_verified_at" [width]="50">
+            <ng-template let-value="value" let-expanded="expanded" ngx-datatable-cell-template>
+              {{ value }}
+            </ng-template>
+          </ngx-datatable-column>
+          
+          <ngx-datatable-column name="Action" prop="id" [width]="50">
+            <ng-template let-value="value" let-expanded="expanded" ngx-datatable-cell-template>
+              <button type="button" class="btn btn-sm btn-outline-warning" (click)="update(value)"> <span>Edit</span>
+              </button>
+              <button type="button" class="btn btn-sm btn-outline-danger ml-3" (click)="delete(value)"> <span>Hapus</span>
+              </button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</div>

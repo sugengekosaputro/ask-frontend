@@ -1,32 +1,19 @@
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
-import { HttpClient, HttpParams } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http'
+import { BaseService } from '../base/base.service';
+import { Response } from 'src/app/interfaces/model/Response';
+import { User } from 'src/app/interfaces/model/User';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class UsersService extends BaseService<Response<User>> {
 
-  private API: string = `${environment.api}/users`;
-  constructor(private httpClient: HttpClient) { }
-
-  getUsers(params?: HttpParams) {
-    return this.httpClient.get(this.API, { params: params });
+  constructor(public httpClient: HttpClient) {
+    super(httpClient);
   }
 
-  getUserById(id: String) {
-    return this.httpClient.get(`${this.API}/${id}`);
-  }
-
-  postUser(data: any) {
-    return this.httpClient.post(this.API, data);
-  }
-
-  putUser(data: any, id: string) {
-    return this.httpClient.put(`${this.API}/${id}`, data);
-  }
-
-  deleteUser(id: string) {
-    return this.httpClient.delete(`${this.API}/${id}`);
+  setEndpoint(endpoint: string) {
+    this.endpoint = endpoint;
   }
 }

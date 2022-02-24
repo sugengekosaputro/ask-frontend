@@ -23,7 +23,7 @@ export class SidebarComponent implements OnInit {
   getMenuByRole(){
     if(localStorage.getItem('roleId')) {
       let id = localStorage.getItem('roleId')!;
-      this.roleService.getRolesById(id).subscribe((res: any) => {
+      this.roleService.getDataById(+id).subscribe((res: any) => {
         if (res) {
           this.menuItems = res.menus;
         }

@@ -10,7 +10,7 @@ export class DashboardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (localStorage.getItem('userId')) {
+    if (localStorage.getItem('token')) {
       return true;
     }
 

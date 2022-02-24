@@ -27,7 +27,7 @@
       "password": "user3pass",
       "role": {
         "id": 21,
-        "rolename": "System Administrator"
+        "rolename": "User Only"
       }
     }
   ],

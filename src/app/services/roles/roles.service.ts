@@ -1,16 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { Response } from 'src/app/interfaces/model/Response';
+import { Role } from 'src/app/interfaces/model/Role';
+import { BaseService } from '../base/base.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RolesService {
+export class RolesService extends BaseService<Response<Role>> {
 
-  private API: string = `${environment.api}/roles`;
-  constructor(private httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient) {
+    super(httpClient);
+  }
 
-  getRolesById(id: string) {
-    return this.httpClient.get(`${this.API}/${id}`)
+  setEndpoint(endpoint: string) {
+    this.endpoint = endpoint;
   }
 }
